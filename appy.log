@@ -1,0 +1,4 @@
+ 26-Feb-23 03:20:54:root:INFO:Module 2 ended, now module 3 started:9244
+ 26-Feb-23 03:20:54:root:WARNING:The warning message is warning:9244
+ 26-Feb-23 03:20:54:root:ERROR:The error message is displaying:9244
+ 26-Feb-23 03:20:54:root:CRITICAL:The critical message is displaying:9244
