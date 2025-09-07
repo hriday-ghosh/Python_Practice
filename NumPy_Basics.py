@@ -111,3 +111,186 @@ loaded_arr = np.load('my_array.npy')  # loads array back
 print(loaded_arr)
 
 # Now you're ready to work with both basic and advanced NumPy!
+
+
+
+
+Looping in NumPy (with full explanation)
+
+# First, we import NumPy library
+import numpy as np
+
+# -----------------------------
+# 📌 Example 1: 1D Dataset
+# This is like having sales data for 4 days
+arr = np.array([10, 20, 30, 40])
+
+# Show the dataset
+print("Dataset (1D Array):", arr)   # [10 20 30 40]
+
+
+# 🔹 1. Simple Loop → go through each number one by one
+for x in arr:                 # take each element from the array one by one
+    print("Value:", x)        # print that element
+
+➡ Output:
+
+Dataset (1D Array): [10 20 30 40]
+Value: 10
+Value: 20
+Value: 30
+Value: 40
+
+
+---
+
+# 🔹 2. Loop with Index → know both position & value
+for i in range(len(arr)):                # range(len(arr)) = [0,1,2,3]
+    print("Index:", i, "Value:", arr[i]) # arr[i] gives value at that position
+
+➡ Output:
+
+Index: 0 Value: 10
+Index: 1 Value: 20
+Index: 2 Value: 30
+Index: 3 Value: 40
+
+
+---
+
+# -----------------------------
+# 📌 Example 2: 2D Dataset
+# This is like sales data for 2 weeks
+# Each row = 1 week, each column = day of week
+arr2 = np.array([[1, 2, 3],
+                 [4, 5, 6]])
+
+# Show the dataset
+print("Dataset (2D Array):\n", arr2)
+# [[1 2 3]
+#  [4 5 6]]
+
+
+# 🔹 3. Loop row by row
+for row in arr2:               # each row means 1 week
+    print("Row (Week):", row)  # prints the whole row
+
+➡ Output:
+
+Dataset (2D Array):
+ [[1 2 3]
+ [4 5 6]]
+Row (Week): [1 2 3]
+Row (Week): [4 5 6]
+
+
+---
+
+# 🔹 4. Nested Loop → go inside each row, number by number
+for row in arr2:           # pick one row at a time
+    for val in row:        # inside that row, pick each value
+        print("Value:", val)
+
+➡ Output:
+
+Value: 1
+Value: 2
+Value: 3
+Value: 4
+Value: 5
+Value: 6
+
+
+---
+
+# 🔹 5. Smart Way → np.nditer()
+# np.nditer() helps to go through every element easily, no matter 1D or 2D
+for x in np.nditer(arr2):
+    print("Value:", x)
+
+➡ Output:
+
+Value: 1
+Value: 2
+Value: 3
+Value: 4
+Value: 5
+Value: 6
+
+
+---
+
+# 🔹 6. BEST Way → Vectorization 🚀
+# Instead of looping, NumPy can apply math to whole array at once
+print("Double Values:", arr * 2)
+# This means multiply each element of arr by 2 automatically
+
+➡ Output:
+
+Double Values: [20 40 60 80]
+
+
+---
+
+🎯 Layman Summary
+
+for x in arr → take one number at a time.
+
+for i in range(len(arr)) → take position + number.
+
+for row in arr2 → take one row (like a week).
+
+nested loop → take row, then number inside row.
+
+np.nditer() → shortcut to pick all numbers one by one.
+
+Vectorization → fastest way, do math on full dataset in one shot.
+
+# Import NumPy
+import numpy as np
+
+# Create a dataset (1D Array)
+# Think of this as sales data for 4 days
+arr = np.array([10, 20, 30, 40])
+
+print("Original Dataset:", arr)   # [10 20 30 40]
+
+
+# 🔹 Without Vectorization (using loop)
+# Multiply each element by 2 using loop
+new_list = []                         # create an empty list to store results
+for x in arr:                         # take each number from arr
+    new_list.append(x * 2)            # multiply it by 2 and add to list
+print("Using Loop:", new_list)        # [20, 40, 60, 80]
+
+
+# 🔹 With Vectorization (NumPy way 🚀)
+# Directly multiply whole array by 2 at once
+new_arr = arr * 2                     # NumPy applies *2 to all elements automatically
+print("Using Vectorization:", new_arr) # [20 40 60 80]
+
+Original Dataset: [10 20 30 40]
+Using Loop: [20, 40, 60, 80]
+Using Vectorization: [20 40 60 80]
+
+# Create a 2D dataset (2 weeks × 3 days sales data)
+arr2 = np.array([[1, 2, 3],
+                 [4, 5, 6]])
+
+print("Original Dataset:\n", arr2)
+# [[1 2 3]
+#  [4 5 6]]
+
+
+# Multiply all values by 10 (like converting sales into rupees)
+new_arr2 = arr2 * 10     # Vectorization applies *10 to every element
+print("After Vectorization:\n", new_arr2)
+# [[10 20 30]
+#  [40 50 60]]
+
+Original Dataset:
+ [[1 2 3]
+ [4 5 6]]
+After Vectorization:
+ [[10 20 30]
+ [40 50 60]]
