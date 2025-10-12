@@ -114,7 +114,7 @@ print(C)
 # if v != "":
 #     print(v)
 # else:
-#     print("None")
+#     print("None") 
 
 
 input_string = input("Enter a string: ")
