@@ -137,3 +137,120 @@ except:
     print(sys.exc_info()[0])  # It will print exception name
     print(sys.exc_info()[1])  # It will print exception information
 print("Rest of the code")
+
+
+# ==========================================
+# 🧠 PYTHON FILE HANDLING (EASY NOTES)
+# ==========================================
+# File handling means - creating, reading, writing, or deleting files.
+
+# ------------------------------------------
+# ✳️ OPENING A FILE
+# open("filename", "mode")
+# mode means what you want to do:
+# "r" → read, "w" → write, "a" → append, "x" → create new, "t" → text, "b" → binary
+
+# Example: open file in read mode
+file = open("demo.txt", "r")   # open file for reading
+print(file.read())             # show all content
+file.close()                   # always close file after work
+
+
+# ------------------------------------------
+# ✳️ WRITING TO A FILE
+# If file doesn’t exist, it creates a new one.
+# If exists, it removes old data and writes new data.
+
+file = open("demo.txt", "w")   # open file to write
+file.write("Hello World!\n")   # write text inside file
+file.write("I am learning Python.\n")
+file.close()                   # close file
+
+# Now check your folder → demo.txt will be created!
+
+
+# ------------------------------------------
+# ✳️ APPENDING TO A FILE (ADD WITHOUT DELETING)
+# Append = add more data at the end
+
+file = open("demo.txt", "a")
+file.write("Adding one more line.\n")
+file.close()
+
+
+# ------------------------------------------
+# ✳️ READING LINE BY LINE
+
+file = open("demo.txt", "r")
+
+# read one line
+print("First line:", file.readline())
+
+# read all lines as list
+print("All lines:", file.readlines())
+
+file.close()
+
+
+# ------------------------------------------
+# ✳️ USING “with” (No need to close manually)
+# "with" automatically closes file after use
+
+with open("demo.txt", "r") as f:
+    print("Using WITH block:")
+    print(f.read())
+
+
+# ------------------------------------------
+# ✳️ CHECK IF FILE EXISTS
+
+import os
+
+if os.path.exists("demo.txt"):
+    print("demo.txt file exists.")
+else:
+    print("File not found!")
+
+
+# ------------------------------------------
+# ✳️ DELETE A FILE
+
+if os.path.exists("old.txt"):
+    os.remove("old.txt")
+    print("File deleted!")
+else:
+    print("old.txt not found, so not deleted.")
+
+
+# ------------------------------------------
+# ✳️ CREATE NEW FILE ONLY IF NOT EXISTS
+# "x" → create new file, gives error if already exists
+
+try:
+    open("newfile.txt", "x")
+    print("newfile.txt created successfully.")
+except:
+    print("newfile.txt already exists.")
+
+
+# ------------------------------------------
+# ✳️ WORKING WITH BINARY FILES (like image, pdf)
+# Binary means non-text data.
+
+# Example: Copy an image
+with open("image.jpg", "rb") as old:   # rb = read binary
+    with open("copy_image.jpg", "wb") as new:  # wb = write binary
+        new.write(old.read())
+
+print("Image copied successfully!")
+
+
+# ------------------------------------------
+# 📝 QUICK RECAP
+# open("file.txt", "r") → Read
+# open("file.txt", "w") → Write (overwrites)
+# open("file.txt", "a") → Append (adds more)
+# open("file.txt", "x") → Create new file
+# Always close file or use “with”.
+# os.remove() → Delete file
+# os.path.exists() → Check file exists
