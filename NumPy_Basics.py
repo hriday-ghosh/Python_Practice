@@ -1,114 +1,240 @@
-# NumPy Basic and Advanced Syntaxes Explained Simply
+# NumPy Basic and Advanced Syntaxes Explained Simply and Clearly with OUTPUT
+# --------------------------------------------------------------------------
 
-import numpy as np  # Import NumPy
+import numpy as np   # Importing the NumPy library and naming it as 'np'
+                     # NumPy helps handle numbers, lists, and matrices efficiently
+                     # It is widely used in Data Analysis, AI, and Machine Learning
+
 
 # ---------------- BASIC ----------------
 
 # 1. Create Arrays
-arr1 = np.array([1, 2, 3])  # 1D array
-arr2 = np.array([[1, 2], [3, 4]])  # 2D array
+arr1 = np.array([1, 2, 3])          # Creates a 1D array → like a simple list [1, 2, 3]
+arr2 = np.array([[1, 2], [3, 4]])   # Creates a 2D array (matrix)
+                                    # [
+                                    #  [1, 2],
+                                    #  [3, 4]
+                                    # ]
 
 # 2. Check array properties
-print(arr1.shape)  # (3,) means 1D with 3 elements
-print(arr2.shape)  # (2, 2) means 2x2 matrix
-print(arr1.dtype)  # data type like int64
-print(arr2.ndim)  # number of dimensions (1 for 1D, 2 for 2D)
+print(arr1.shape)   # (3,) → means 1D array with 3 elements
+print(arr2.shape)   # (2, 2) → 2 rows, 2 columns
+print(arr1.dtype)   # int64 → shows data type (may vary by system)
+print(arr2.ndim)    # 2 → number of dimensions (1D or 2D)
+
+# ---------- OUTPUT ----------
+# (3,)
+# (2, 2)
+# int64
+# 2
+
 
 # 3. Create special arrays
-zeros = np.zeros((2, 3))  # matrix of 0s
-ones = np.ones((2, 2))  # matrix of 1s
-full = np.full((2, 2), 7)  # matrix filled with 7
-identity = np.eye(3)  # identity matrix (1s in diagonal, rest 0)
+zeros = np.zeros((2, 3))   # Creates 2x3 matrix of 0s
+ones = np.ones((2, 2))     # Creates 2x2 matrix of 1s
+full = np.full((2, 2), 7)  # Creates 2x2 matrix filled with 7
+identity = np.eye(3)       # Creates a 3x3 identity matrix (1s on diagonal)
+                           # [
+                           #  [1. 0. 0.]
+                           #  [0. 1. 0.]
+                           #  [0. 0. 1.]
+                           # ]
+
 
 # 4. Generate ranges
-arr_range = np.arange(0, 10, 2)  # numbers from 0 to 8 with step 2
-lin_space = np.linspace(0, 1, 5)  # 5 evenly spaced numbers from 0 to 1
+arr_range = np.arange(0, 10, 2)  # Creates numbers from 0 to 8 (10 excluded), step = 2
+# Output → [0 2 4 6 8]
+
+lin_space = np.linspace(0, 1, 5) # Creates 5 evenly spaced numbers between 0 and 1
+# Output → [0.   0.25 0.5  0.75 1.  ]
+
 
 # 5. Reshape arrays
-reshaped = np.array([1, 2, 3, 4, 5, 6]).reshape((2, 3))  # 2 rows, 3 cols
+reshaped = np.array([1, 2, 3, 4, 5, 6]).reshape((2, 3))
+# Reshape → 2 rows, 3 columns
+# [
+#  [1 2 3]
+#  [4 5 6]
+# ]
+
 
 # 6. Indexing & Slicing
-print(arr1[0])  # first item of 1D array
-print(arr2[1, 1])  # value at 2nd row, 2nd column
-print(arr2[:, 0])  # all rows, first column
+print(arr1[0])       # Prints first item of arr1 → 1
+print(arr2[1, 1])    # 2nd row, 2nd column → 4
+print(arr2[:, 0])    # ":" = all rows, first column → [1 3]
+
+# ---------- OUTPUT ----------
+# 1
+# 4
+# [1 3]
+
 
 # 7. Mathematical Operations
 a = np.array([1, 2, 3])
 b = np.array([4, 5, 6])
-print(a + b)  # element-wise addition
-print(a * b)  # element-wise multiplication
-print(a ** 2)  # square of each element
-print(np.sqrt(a))  # square root of each element
+print(a + b)          # Adds element-wise → [5 7 9]
+print(a * b)          # Multiplies element-wise → [4 10 18]
+print(a ** 2)         # Squares each → [1 4 9]
+print(np.sqrt(a))     # Square root of each → [1.         1.41421356 1.73205081]
+
+# ---------- OUTPUT ----------
+# [5 7 9]
+# [ 4 10 18]
+# [1 4 9]
+# [1.         1.41421356 1.73205081]
+
 
 # 8. Aggregate Functions
-print(np.sum(arr2))  # sum of all values
-print(np.min(arr2))  # smallest number
-print(np.max(arr2))  # largest number
-print(np.mean(arr2))  # average
-print(np.std(arr2))  # standard deviation
+print(np.sum(arr2))   # Adds all numbers → 10
+print(np.min(arr2))   # Smallest value → 1
+print(np.max(arr2))   # Largest value → 4
+print(np.mean(arr2))  # Average → 2.5
+print(np.std(arr2))   # Standard deviation → 1.118...
+
+# ---------- OUTPUT ----------
+# 10
+# 1
+# 4
+# 2.5
+# 1.118033988749895
+
 
 # 9. Boolean Masking
-mask = arr2 > 2  # condition returns True/False for each element
-print(arr2[mask])  # shows values where condition is True
+mask = arr2 > 2       # True where condition met
+# mask → [[False False]
+#          [ True  True]]
+print(arr2[mask])     # Shows elements where True → [3 4]
+
+# ---------- OUTPUT ----------
+# [3 4]
+
 
 # 10. Copy vs View
 x = np.array([1, 2, 3])
-y = x.copy()  # makes a real copy of x
-y[0] = 100  # changing y won't affect x
-print(x)  # original remains unchanged
-print(y)  # modified copy
+y = x.copy()          # .copy() makes a real copy
+y[0] = 100            # Changes only y, not x
+print(x)              # [1 2 3]
+print(y)              # [100   2   3]
+
+# ---------- OUTPUT ----------
+# [1 2 3]
+# [100   2   3]
+
 
 # 11. Random Numbers
-rand_arr = np.random.rand(2, 2)  # random float values in 2x2
-rand_ints = np.random.randint(1, 10, (2, 3))  # random ints 1 to 9 in 2x3
+rand_arr = np.random.rand(2, 2)
+# Random floats between 0 and 1 (values change every run)
+# Example → [[0.42 0.88]
+#            [0.15 0.77]]
 
-# 12. Axis
+rand_ints = np.random.randint(1, 10, (2, 3))
+# Random integers from 1 to 9 (values change every run)
+# Example → [[3 7 5]
+#            [8 2 4]]
+
+
+# 12. Axis (direction of operation)
 arr3 = np.array([[1, 2, 3], [4, 5, 6]])
-print(np.sum(arr3, axis=0))  # sum down each column
-print(np.sum(arr3, axis=1))  # sum across each row
+print(np.sum(arr3, axis=0))  # Sum column-wise → [5 7 9]
+print(np.sum(arr3, axis=1))  # Sum row-wise → [6 15]
+
+# ---------- OUTPUT ----------
+# [5 7 9]
+# [6 15]
+
 
 # ---------------- ADVANCED ----------------
 
 # 13. Broadcasting
-m = np.array([[1], [2], [3]])  # column vector shape (3,1)
-n = np.array([10, 20, 30])    # row vector shape (3,)
-result = m + n  # shapes broadcast to (3,3)
-print(result)  # adds each row to the full row vector
+m = np.array([[1], [2], [3]])  # (3,1)
+n = np.array([10, 20, 30])     # (3,)
+result = m + n
+print(result)
+# NumPy automatically matches shapes and adds them
+# Output:
+# [[11 21 31]
+#  [12 22 32]
+#  [13 23 33]]
+
+# ---------- OUTPUT ----------
+# [[11 21 31]
+#  [12 22 32]
+#  [13 23 33]]
+
 
 # 14. Stacking Arrays
 arr_a = np.array([1, 2])
 arr_b = np.array([3, 4])
-print(np.vstack((arr_a, arr_b)))  # stack arrays vertically (rows)
-print(np.hstack((arr_a, arr_b)))  # stack arrays horizontally (columns)
+print(np.vstack((arr_a, arr_b)))  # Stack vertically → one below another
+print(np.hstack((arr_a, arr_b)))  # Stack horizontally → side by side
+
+# ---------- OUTPUT ----------
+# [[1 2]
+#  [3 4]]
+# [1 2 3 4]
+
 
 # 15. Splitting Arrays
 big_arr = np.array([1, 2, 3, 4, 5, 6])
-print(np.split(big_arr, 3))  # split into 3 equal parts
+print(np.split(big_arr, 3))  # Split equally into 3 small arrays
+
+# ---------- OUTPUT ----------
+# [array([1, 2]), array([3, 4]), array([5, 6])]
+
 
 # 16. Advanced Indexing
 data = np.array([10, 20, 30, 40])
-indices = [0, 2]  # positions to extract
-print(data[indices])  # select items at index 0 and 2
+indices = [0, 2]          # Positions 0 and 2
+print(data[indices])      # Picks [10 30]
+
+# ---------- OUTPUT ----------
+# [10 30]
+
 
 # 17. Where Function
 arr4 = np.array([5, 15, 25, 35])
-labels = np.where(arr4 > 20, 'High', 'Low')  # condition-based labeling
-print(labels)  # outputs array with 'High' or 'Low' strings
+labels = np.where(arr4 > 20, 'High', 'Low')
+print(labels)
+# If element >20 → 'High', else → 'Low'
+# ---------- OUTPUT ----------
+# ['Low' 'Low' 'High' 'High']
+
 
 # 18. Unique and Sorting
 arr5 = np.array([3, 1, 2, 3, 4, 2])
-print(np.unique(arr5))  # returns sorted array with unique values
-print(np.sort(arr5))  # returns sorted version of array
+print(np.unique(arr5))   # Unique values only → [1 2 3 4]
+print(np.sort(arr5))     # Sorted order → [1 2 2 3 3 4]
+
+# ---------- OUTPUT ----------
+# [1 2 3 4]
+# [1 2 2 3 3 4]
+
 
 # 19. Dot Product (Matrix Multiplication)
 m1 = np.array([[1, 2], [3, 4]])
 m2 = np.array([[5, 6], [7, 8]])
-print(np.dot(m1, m2))  # multiply 2 matrices
+print(np.dot(m1, m2))
+# Multiplication rule → row of first * column of second
+# [[(1*5+2*7) (1*6+2*8)]
+#  [(3*5+4*7) (3*6+4*8)]]
+# [[19 22]
+#  [43 50]]
+
+# ---------- OUTPUT ----------
+# [[19 22]
+#  [43 50]]
+
 
 # 20. Save and Load Arrays
-np.save('my_array.npy', arr1)  # saves array to .npy file
-loaded_arr = np.load('my_array.npy')  # loads array back
-print(loaded_arr)
+np.save('my_array.npy', arr1)      # Saves array arr1 into file 'my_array.npy'
+loaded_arr = np.load('my_array.npy')  # Loads it back from file
+print(loaded_arr)                  # Prints → [1 2 3]
+
+# ---------- OUTPUT ----------
+# [1 2 3]
+
+
+
 
 # Now you're ready to work with both basic and advanced NumPy!
 
@@ -376,3 +502,4 @@ K = np.identity(3)
 
 print(K)  
 # Prints the identity matrix on the screen
+
