@@ -115,6 +115,7 @@ print(loaded_arr)
 
 
 
+
 Looping in NumPy (with full explanation)
 
 # First, we import NumPy library
@@ -294,3 +295,84 @@ Original Dataset:
 After Vectorization:
  [[10 20 30]
  [40 50 60]]
+
+
+
+
+    import numpy as np   # Importing the numpy library and giving it a short name 'np' 
+                     # (so we can use np instead of typing numpy again and again)
+
+# ------------------ ARRAY CREATION ------------------
+
+A = np.array([1,2,3])   
+# Creates a 1-dimensional array (like a simple list)
+# [1, 2, 3]
+# Shape → (3,)  meaning it has 3 elements in one row
+# Used when you want to store or do math on a 1D list of numbers
+
+B = np.array([[1,2,3],[4,5,6]])  
+# Creates a 2-dimensional array (like rows and columns)
+# [
+#  [1, 2, 3],
+#  [4, 5, 6]
+# ]
+# Shape → (2, 3) meaning 2 rows and 3 columns
+# Used for working with matrices or tables
+
+C = np.array([[[1,2],[3,4]], [[5,6],[7,8]]])  
+# Creates a 3-dimensional array (like a cube of numbers)
+# Think of it as 2 layers, each layer is a 2x2 matrix
+# Shape → (2, 2, 2)
+# Used in advanced operations like image data or 3D data
+
+D = np.array([1,2,3], dtype=float)
+# Same as array A but with data type set to 'float' (decimal numbers)
+# Output → [1.0, 2.0, 3.0]
+# dtype means "data type" – you can set it to int, float, complex, etc.
+
+E = np.arange(1,12,2)
+# Creates an array from 1 up to (but not including) 12, with a step of 2
+# Output → [1, 3, 5, 7, 9, 11]
+# arange(start, stop, step) works like Python's range() but gives an array
+# Useful for generating number sequences quickly
+
+F = np.arange(16).reshape(2,2,2,2)
+# np.arange(16) → makes numbers 0 to 15 (16 numbers)
+# reshape(2,2,2,2) → reshapes it into a 4-dimensional array
+# So shape → (2, 2, 2, 2)
+# Basically 2 blocks → each having 2x2x2 cubes
+# Used in multidimensional data or tensor operations
+
+G = np.ones((3,3))
+# Creates a 3x3 array filled with 1s
+# Shape → (3,3)
+# Useful for initializing arrays or matrices with all 1s before operations
+
+H = np.zeros((3,3))
+# Creates a 3x3 array filled with 0s
+# Shape → (3,3)
+# Useful for initializing arrays with all zeros (like placeholders)
+
+I = np.random.random((3,4))
+# Creates a 3x4 array filled with random numbers between 0 and 1
+# Shape → (3,4)
+# Useful in simulations, testing, or machine learning initialization
+
+J = np.linspace(-10,10,10, dtype=int)
+# Creates 10 evenly spaced numbers from -10 to 10 (including both ends)
+# dtype=int means all numbers will be integers
+# Output → [-10, -7, -5, -2, 0, 2, 5, 7, 10, 10]
+# linspace(start, stop, num) gives equal intervals between start and stop
+
+K = np.identity(3)
+# Creates a 3x3 Identity matrix
+# [
+#  [1, 0, 0],
+#  [0, 1, 0],
+#  [0, 0, 1]
+# ]
+# Identity matrix → 1s on the diagonal and 0s elsewhere
+# Very important in matrix algebra (acts like ‘1’ in multiplication)
+
+print(K)  
+# Prints the identity matrix on the screen
